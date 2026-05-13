@@ -27,3 +27,13 @@ SELECT
 FROM inventory 
 WHERE quantity_in_stock < reorder_level 
 GROUP BY category;
+
+-- QUERY 4: SUPPLIER PERFORMANCE ANALYSIS
+-- Goal: Identify categories with the slowest replenishment cycles.
+
+SELECT 
+    category_supplied, 
+    AVG(lead_time_days) AS avg_delivery_time 
+FROM suppliers 
+GROUP BY category_supplied
+ORDER BY avg_delivery_time DESC;
