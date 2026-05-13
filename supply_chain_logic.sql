@@ -8,3 +8,12 @@ SELECT
 FROM inventory 
 WHERE quantity_in_stock < reorder_level 
 ORDER BY quantity_in_stock ASC;
+
+
+-- QUERY 2: FINANCIAL IMPACT OF RESTOCKING
+-- Calculates the exact cost to bring each at-risk item back to safety levels.
+SELECT 
+    product_id, 
+    (reorder_level - quantity_in_stock) * unit_price AS restock_cost 
+FROM inventory 
+WHERE quantity_in_stock < reorder_level;
