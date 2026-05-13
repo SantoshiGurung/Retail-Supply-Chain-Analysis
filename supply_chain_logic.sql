@@ -17,3 +17,13 @@ SELECT
     (reorder_level - quantity_in_stock) * unit_price AS restock_cost 
 FROM inventory 
 WHERE quantity_in_stock < reorder_level;
+
+-- QUERY 3: EXECUTIVE SUMMARY BY CATEGORY
+-- Provides the total financial requirement to restock each department.
+
+SELECT 
+    category, 
+    SUM((reorder_level - quantity_in_stock) * unit_price) AS total_category_cost 
+FROM inventory 
+WHERE quantity_in_stock < reorder_level 
+GROUP BY category;
