@@ -37,3 +37,14 @@ SELECT
 FROM suppliers 
 GROUP BY category_supplied
 ORDER BY avg_delivery_time DESC;
+
+-- QUERY 5: HIGH-VALUE INVENTORY DENSITY
+-- Goal: Identify categories with expensive items (> $50) that have high stock volume (> 500 units).
+
+SELECT 
+    category, 
+    SUM(quantity_in_stock) AS total_stock 
+FROM inventory  
+WHERE unit_price > 50  
+GROUP BY category 
+HAVING SUM(quantity_in_stock) > 500;
